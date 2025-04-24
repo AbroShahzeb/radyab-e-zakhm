@@ -9,6 +9,7 @@ const ROUTES = {
   DETECT: "detect",
   DOCTORS: "doctors",
   HISTORY: "history",
+  SETTINGS: "settings",
 };
 
 export default ROUTES;

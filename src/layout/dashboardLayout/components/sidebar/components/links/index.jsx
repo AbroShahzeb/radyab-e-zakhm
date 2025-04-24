@@ -1,9 +1,11 @@
 import { NavLink } from "react-router-dom";
 import ROUTES from "../../../../../../constants/routes";
 import {
-  ArchiveIcon,
   ChevronRight,
+  ClockIcon,
   HomeIcon,
+  PersonsIcon,
+  SearchIcon,
 } from "../../../../../../assets/svgAssets";
 
 const LINKS = [
@@ -16,19 +18,19 @@ const LINKS = [
   {
     id: 1,
     name: "Detect",
-    icon: <ArchiveIcon />,
+    icon: <SearchIcon />,
     route: ROUTES.DETECT,
   },
   {
     id: 2,
     name: "History",
-    icon: <ArchiveIcon />,
+    icon: <ClockIcon />,
     route: ROUTES.HISTORY,
   },
   {
     id: 3,
     name: "Doctors",
-    icon: <ArchiveIcon />,
+    icon: <PersonsIcon />,
     route: ROUTES.DOCTORS,
   },
 ];
