@@ -3,52 +3,15 @@
 @custom-variant dark (&:where(.dark, .dark *));
 
 @font-face {
-  font-family: "Inter";
+  font-family: "Geist";
   font-style: normal;
   font-weight: 100 900;
-  src: url("./assets/fonts/inter/Inter-VariableFont_opsz\,wght.ttf");
-}
-
-@font-face {
-  font-family: "Inter";
-  font-style: italic;
-  font-weight: 100 900;
-  src: url("./assets/fonts/inter/Inter-Italic-VariableFont_opsz\,wght.ttf");
-}
-
-@font-face {
-  font-family: "Noto Serif";
-  font-style: normal;
-  font-weight: 100 900;
-  src: url("./assets/fonts/noto-serif/NotoSerif-VariableFont_wdth\,wght.ttf");
-}
-
-@font-face {
-  font-family: "Noto Serif";
-  font-style: italic;
-  font-weight: 100 900;
-  src: url("./assets/fonts/noto-serif/NotoSerif-Italic-VariableFont_wdth\,wght.ttf");
-}
-
-@font-face {
-  font-family: "Source Code Pro";
-  font-style: normal;
-  font-weight: 100 900;
-  src: url("./assets/fonts/source-code-pro/SourceCodePro-VariableFont_wght.ttf");
-}
-
-@font-face {
-  font-family: "Source Code Pro";
-  font-style: italic;
-  font-weight: 100 900;
-  src: url("./assets/fonts/source-code-pro/SourceCodePro-Italic-VariableFont_wght.ttf");
+  src: url("./assets/fonts/geist/Geist-VariableFont_wght.ttf");
 }
 
 @theme {
   /* Font family  */
-  --font-inter: "Inter", sans-serif;
-  --font-noto-serif: "Noto Serif", serif;
-  --font-source-code-pro: "Source Code Pro", monospace;
+  --font-geist: "Geist", sans-serif;
 
   /* Colors  */
 
@@ -113,9 +76,25 @@
   --color-secondary-text: var(--color-neutral-600);
 }
 
+input:-webkit-autofill,
+input:-webkit-autofill:hover,
+input:-webkit-autofill:focus,
+input:-webkit-autofill:active {
+  -webkit-box-shadow: 0 0 0 1000px white inset !important;
+  box-shadow: 0 0 0 1000px transparent inset !important;
+  -webkit-text-fill-color: var(
+    --color-primary-text
+  ) !important; /* Optional: override text color */
+  transition: background-color 9999s ease-in-out 0s;
+}
+
+body {
+  font-family: var(--font-geist);
+}
+
 body.dark {
   --color-surface: var(--color-neutral-700);
-  --color-surface-2: #0e121b;
+  --color-surface-2: #33363d;
   --color-primary-text: var(--color-neutral-0);
   --color-secondary-text: var(--color-neutral-200);
   --shadow-lg: none;
