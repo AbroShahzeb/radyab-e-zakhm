@@ -6,8 +6,8 @@ export const AppRouter = () => {
     <BrowserRouter>
       <Routes>
         <Route path={ROUTES.HOME} element={<p>Home</p>} />
-        <Route path={ROUTES.SIGNIN} element={<p>Signin</p>} />
-        <Route path={ROUTES.SIGNUP} element={<p>Signup</p>} />
+        <Route path={ROUTES.LOGIN} element={<p>Login</p>} />
+        <Route path={ROUTES.REGISTER} element={<p>Register</p>} />
         <Route path={ROUTES.FORGOT_PASSWORD} element={<p>Forgot Password</p>} />
         <Route path={ROUTES.RESET_PASSWORD} element={<p>Reset Password</p>} />
       </Routes>
