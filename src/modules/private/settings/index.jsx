@@ -12,7 +12,7 @@ export const Settings = () => {
         <div className="py-6 px-4 lg:pl-8 lg:py-5 pr-4 lg:border-r border-neutral-200 dark:border-neutral-800 flex flex-col gap-2 w-full lg:w-[260px] h-full">
           <Links />
           <Link
-            to={ROUTES.SIGNIN}
+            to={ROUTES.LOGIN}
             className="flex items-center gap-2 py-2.5 text-preset-4 text-secondary-text px-4 hover:bg-blue-50 dark:hover:bg-neutral-800 rounded-lg "
           >
             <span>

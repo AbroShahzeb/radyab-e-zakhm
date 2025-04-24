@@ -1,4 +1,4 @@
-import { useEffect, useState } from "react";
+import { useState } from "react";
 import { LogoutIcon, MoonIcon, SunIcon } from "../../../../../assets/svgAssets";
 import { PageHeader } from "../../../../../layout/dashboardLayout/components";
 import { Links } from "../links";
@@ -28,8 +28,7 @@ export const ThemeSettings = () => {
     localStorage.getItem("theme") || "light"
   );
 
-  useEffect(() => {
-    // Update localStorage with the selected theme
+  const handleThemeChange = () => {
     localStorage.setItem("theme", selectedOption);
 
     // Add or remove the 'dark' class from the body element
@@ -38,7 +37,7 @@ export const ThemeSettings = () => {
     } else {
       document.body.classList.remove("dark");
     }
-  }, [selectedOption]);
+  };
 
   return (
     <div className="w-full flex-1 max-h-dvh h-full bg-surface-2">
@@ -84,7 +83,7 @@ export const ThemeSettings = () => {
             </div>
 
             <div className="flex justify-end w-full">
-              <Button label="Apply Changes" />
+              <Button label="Apply Changes" onClick={handleThemeChange} />
             </div>
           </div>
         </div>

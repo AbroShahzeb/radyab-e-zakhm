@@ -13,8 +13,18 @@ import {
   AccountSettings,
   ThemeSettings,
 } from "../modules/private/settings/components";
+import { useEffect } from "react";
 
 export const AppRouter = () => {
+  useEffect(() => {
+    const theme = localStorage.getItem("theme") || "light";
+    // Set the initial theme based on localStorage value
+    if (theme === "dark") {
+      document.body.classList.add("dark");
+    } else {
+      document.body.classList.remove("dark");
+    }
+  }, []);
   return (
     <BrowserRouter>
       <Routes>

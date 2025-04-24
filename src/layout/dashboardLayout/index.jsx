@@ -1,6 +1,5 @@
-import { Link, Outlet } from "react-router-dom";
-import ROUTES from "../../constants/routes";
-import { PlusIcon } from "../../assets/svgAssets";
+import { Outlet } from "react-router-dom";
+
 import { Sidebar, Tabs } from "./components";
 
 export const DashborardLayout = () => {
