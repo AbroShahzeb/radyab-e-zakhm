@@ -3,8 +3,12 @@ import ROUTES from "../../../constants/routes";
 import { PageHeader } from "../../../layout/dashboardLayout/components";
 import { LogoutIcon } from "../../../assets/svgAssets";
 import { Links } from "./components";
+import { useEffect } from "react";
 
 export const Settings = () => {
+  useEffect(() => {
+    document.title = "Settings | Radyab-e-Zakhm";
+  }, []);
   return (
     <div className="w-full flex-1 max-h-dvh h-full bg-surface-2">
       <PageHeader title="Settings" />

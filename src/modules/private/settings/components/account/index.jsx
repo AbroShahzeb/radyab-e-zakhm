@@ -1,7 +1,7 @@
 import { zodResolver } from "@hookform/resolvers/zod";
 import { useForm } from "react-hook-form";
 import { changePasswordFormSchema } from "../../../../../lib/validations";
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import { PageHeader } from "../../../../../layout/dashboardLayout/components";
 import { Links } from "../links";
 import { Link } from "react-router-dom";
@@ -10,6 +10,9 @@ import { EyeClose, EyeOpen, LogoutIcon } from "../../../../../assets/svgAssets";
 import { Button, Input } from "../../../../../generalComponents";
 
 export const AccountSettings = () => {
+  useEffect(() => {
+    document.title = "Account Settings | Radyab-e-Zakhm";
+  }, []);
   const {
     register,
     handleSubmit,

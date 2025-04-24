@@ -1,4 +1,4 @@
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import { LogoutIcon, MoonIcon, SunIcon } from "../../../../../assets/svgAssets";
 import { PageHeader } from "../../../../../layout/dashboardLayout/components";
 import { Links } from "../links";
@@ -27,6 +27,10 @@ export const ThemeSettings = () => {
   const [selectedOption, setSelectedOption] = useState(
     localStorage.getItem("theme") || "light"
   );
+
+  useEffect(() => {
+    document.title = "Theme Settings | Radyab-e-Zakhm";
+  }, []);
 
   const handleThemeChange = () => {
     localStorage.setItem("theme", selectedOption);

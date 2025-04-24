@@ -30,7 +30,7 @@ export const Register = () => {
   };
 
   useEffect(() => {
-    document.title = "Sign Up | Radyab-e-Zakhm";
+    document.title = "Register | Radyab-e-Zakhm";
   }, []);
 
   const [isPasswordVisible, setIsPasswordVisible] = useState(false);
