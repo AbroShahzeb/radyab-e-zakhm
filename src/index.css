@@ -94,7 +94,7 @@ body {
 
 body.dark {
   --color-surface: var(--color-neutral-700);
-  --color-surface-2: #33363d;
+  --color-surface-2: #0e121b;
   --color-primary-text: var(--color-neutral-0);
   --color-secondary-text: var(--color-neutral-200);
   --shadow-lg: none;

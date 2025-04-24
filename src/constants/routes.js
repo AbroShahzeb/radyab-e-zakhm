@@ -1,10 +1,14 @@
 const ROUTES = {
-  HOME: "/",
+  LANDING: "/",
   LOGIN: "/login",
   REGISTER: "/register",
   FORGOT_PASSWORD: "/forgot-password",
   RESET_PASSWORD: "/reset-password/:id",
-  DASHBOARD: "/dashboard",
+  DASHBOARD: "/",
+  HOME: "home",
+  DETECT: "detect",
+  DOCTORS: "doctors",
+  HISTORY: "history",
 };
 
 export default ROUTES;
