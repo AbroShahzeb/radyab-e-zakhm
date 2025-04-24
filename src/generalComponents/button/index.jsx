@@ -9,7 +9,8 @@ export const Button = ({
   variant = "primary",
 }) => {
   const varinats = {
-    primary: "bg-green-500 text-white hover:bg-green-600",
+    primary:
+      "bg-green-500 dark:bg-green-600 text-white hover:bg-green-600 dark:hover:bg-green-700",
     secondary:
       "bg-neutral-100 dark:bg-neutral-800 text-neutral-600 dark:text-neutral-400 hover:bg-transparent border border-transparent transition-all  hover:border-neutral-300 dark:hover:border-neutral-700 hover:text-primary-text",
     outlined:

@@ -8,6 +8,11 @@ import {
 } from "../modules/public/auth";
 import { DashborardLayout } from "../layout";
 import { Dashboard, Detection, Doctors, History } from "../modules/private";
+import { Settings } from "../modules/private/settings";
+import {
+  AccountSettings,
+  ThemeSettings,
+} from "../modules/private/settings/components";
 
 export const AppRouter = () => {
   return (
@@ -25,6 +30,9 @@ export const AppRouter = () => {
           <Route path={ROUTES.DETECT} element={<Detection />} />
           <Route path={ROUTES.DOCTORS} element={<Doctors />} />
           <Route path={ROUTES.HISTORY} element={<History />} />
+          <Route path={"settings"} element={<Settings />} />
+          <Route path={"settings/theme"} element={<ThemeSettings />} />
+          <Route path={"settings/account"} element={<AccountSettings />} />
         </Route>
       </Routes>
     </BrowserRouter>

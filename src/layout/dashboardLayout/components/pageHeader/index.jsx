@@ -26,7 +26,7 @@ export const PageHeader = ({ title, isLargeHidden = false }) => {
           /> */}
 
           <Link
-            to={ROUTES.HOME}
+            to={ROUTES.THEME_SETTINGS}
             className="text-primary-text size-[42px] rounded-md hover:bg-neutral-200 dark:hover:bg-neutral-800 flex items-center justify-center "
           >
             <SettingsIcon />

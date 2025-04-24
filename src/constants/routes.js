@@ -9,7 +9,9 @@ const ROUTES = {
   DETECT: "detect",
   DOCTORS: "doctors",
   HISTORY: "history",
-  SETTINGS: "settings",
+  SETTINGS: "/settings",
+  THEME_SETTINGS: "/settings/theme",
+  ACCOUNT_SETTINGS: "/settings/account",
 };
 
 export default ROUTES;

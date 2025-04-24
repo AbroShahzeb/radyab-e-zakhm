@@ -26,3 +26,15 @@ export const resetPasswordFormSchema = z
     message: "Passwords don't match",
     path: ["passwordConfirmation"],
   });
+
+export const changePasswordFormSchema = z
+  .object({
+    oldPassword: z.string().min(8, "Password must be at least 8 characters"),
+    newPassword: z.string().min(8, "Password must be at least 8 characters"),
+    confirmPassword: z
+      .string()
+      .min(8, "Password must be at least 8 characters"),
+  })
+  .refine((data) => data.newPassword === data.passwordConfirmation, {
+    message: "Passwords don't match",
+  });
