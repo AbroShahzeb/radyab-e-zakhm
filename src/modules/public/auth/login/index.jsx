@@ -10,13 +10,18 @@ import {
   Logo,
 } from "../../../../assets/svgAssets";
 import ROUTES from "../../../../constants/routes";
-import { Link } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
+import { useMutation } from "@tanstack/react-query";
+import { loginUser } from "../../../../api/auth";
+import { showErrorToast, showSuccessToast } from "../../../../lib/toastUtils";
 
 export const Login = () => {
+  const navigate = useNavigate();
   const {
     register,
     handleSubmit,
     formState: { errors },
+    reset,
   } = useForm({
     defaultValues: {
       email: "",
@@ -25,8 +30,31 @@ export const Login = () => {
     resolver: zodResolver(loginFormSchema),
   });
 
+  const { mutate: loginMutation, isPending } = useMutation({
+    mutationFn: loginUser,
+    onSuccess: (data) => {
+      if (data.status !== "success") {
+        showErrorToast(data.message);
+        return;
+      }
+
+      reset();
+
+      localStorage.setItem("user", JSON.stringify(data.user));
+      localStorage.setItem("isAuthenticated", true);
+
+      showSuccessToast("Logged in successfully. Redirecting...");
+
+      navigate(ROUTES.DASHBOARD, { replace: true });
+    },
+    onError: (error) => {
+      console.error("Registration failed:", error);
+      showErrorToast(error.message);
+    },
+  });
+
   const onSubmit = (data) => {
-    console.log(data);
+    loginMutation(data);
   };
 
   useEffect(() => {
@@ -83,7 +111,11 @@ export const Login = () => {
             error={errors.password?.message}
             registerProps={register("password")}
           />
-          <Button type="submit" label="Login" />
+          <Button
+            type="submit"
+            label={isPending ? "Loading..." : "Login"}
+            disabled={isPending}
+          />
         </form>
 
         <div className="mt-4 pt-6 border-t border-neutral-200 dark:border-neutral-800 flex flex-col items-center gap-4">

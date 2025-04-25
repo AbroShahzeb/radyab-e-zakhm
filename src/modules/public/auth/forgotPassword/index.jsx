@@ -4,12 +4,16 @@ import { zodResolver } from "@hookform/resolvers/zod";
 import { forgotPasswordFormSchema } from "../../../../lib/validations";
 import { Button, Input } from "../../../../generalComponents";
 import { Logo } from "../../../../assets/svgAssets";
+import { useMutation } from "@tanstack/react-query";
+import { forgotPassword } from "../../../../api/auth";
+import { showErrorToast, showSuccessToast } from "../../../../lib/toastUtils";
 
 export const ForgotPassword = () => {
   const {
     register,
     handleSubmit,
     formState: { errors },
+    reset,
   } = useForm({
     defaultValues: {
       email: "",
@@ -17,8 +21,25 @@ export const ForgotPassword = () => {
     resolver: zodResolver(forgotPasswordFormSchema),
   });
 
+  const { mutate: forgotPasswordMutation, isPending } = useMutation({
+    mutationFn: forgotPassword,
+    onSuccess: (data) => {
+      if (data.status !== "success") {
+        showErrorToast(data.message);
+        return;
+      }
+
+      reset();
+
+      showSuccessToast(data.message);
+    },
+    onError: (error) => {
+      showErrorToast(error.message);
+    },
+  });
+
   const onSubmit = (data) => {
-    console.log(data);
+    forgotPasswordMutation(data);
   };
 
   useEffect(() => {
@@ -52,7 +73,11 @@ export const ForgotPassword = () => {
             error={errors.email?.message}
           />
 
-          <Button type="submit" label="Send Reset Link" />
+          <Button
+            type="submit"
+            label={isPending ? "Loading..." : "Send Reset Link"}
+            disabled={isPending}
+          />
         </form>
       </div>
     </main>

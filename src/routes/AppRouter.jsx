@@ -14,6 +14,7 @@ import {
   ThemeSettings,
 } from "../modules/private/settings/components";
 import { useEffect } from "react";
+import { ProtectedRoute } from "./ProtectedRoute";
 
 export const AppRouter = () => {
   useEffect(() => {
@@ -34,7 +35,14 @@ export const AppRouter = () => {
         <Route path={ROUTES.FORGOT_PASSWORD} element={<ForgotPassword />} />
         <Route path={ROUTES.RESET_PASSWORD} element={<ResetPassword />} />
 
-        <Route path={ROUTES.DASHBOARD} element={<DashborardLayout />}>
+        <Route
+          path={ROUTES.DASHBOARD}
+          element={
+            <ProtectedRoute>
+              <DashborardLayout />
+            </ProtectedRoute>
+          }
+        >
           <Route index replace element={<Navigate to={ROUTES.HOME} />} />
           <Route path={ROUTES.HOME} element={<Dashboard />} />
           <Route path={ROUTES.DETECT} element={<Detection />} />

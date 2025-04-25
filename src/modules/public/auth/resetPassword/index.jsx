@@ -4,12 +4,20 @@ import { zodResolver } from "@hookform/resolvers/zod";
 import { resetPasswordFormSchema } from "../../../../lib/validations";
 import { Button, Input } from "../../../../generalComponents";
 import { EyeClose, EyeOpen, Logo } from "../../../../assets/svgAssets";
+import { useNavigate, useParams } from "react-router-dom";
+import { useMutation } from "@tanstack/react-query";
+import { resetPassword } from "../../../../api/auth";
+import { showErrorToast, showSuccessToast } from "../../../../lib/toastUtils";
+import ROUTES from "../../../../constants/routes";
 
 export const ResetPassword = () => {
+  const navigate = useNavigate();
+  const { token } = useParams();
   const {
     register,
     handleSubmit,
     formState: { errors },
+    reset,
   } = useForm({
     defaultValues: {
       password: "",
@@ -18,8 +26,33 @@ export const ResetPassword = () => {
     resolver: zodResolver(resetPasswordFormSchema),
   });
 
+  const { mutate: resetPasswordMutation, isPending } = useMutation({
+    mutationFn: resetPassword,
+    onSuccess: (data) => {
+      if (data.status !== "success") {
+        showErrorToast(data.message);
+        return;
+      }
+
+      reset();
+
+      showSuccessToast("Registered successfully. Redirecting...");
+
+      navigate(ROUTES.DASHBOARD, { replace: true });
+    },
+    onError: (error) => {
+      console.error("Registration failed:", error);
+      showErrorToast(error.message);
+    },
+  });
+
   const onSubmit = (data) => {
-    console.log(data);
+    const formattedBody = {
+      token,
+      password: data.password,
+    };
+
+    resetPasswordMutation(formattedBody);
   };
 
   useEffect(() => {
@@ -89,7 +122,10 @@ export const ResetPassword = () => {
             error={errors.passwordConfirmation?.message}
             registerProps={register("passwordConfirmation")}
           />
-          <Button type="submit" label="Reset Password" />
+          <Button
+            type="submit"
+            label={isPending ? "Loading..." : "Reset Password"}
+          />
         </form>
       </div>
     </main>

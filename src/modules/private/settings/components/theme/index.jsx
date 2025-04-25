@@ -5,6 +5,7 @@ import { Links } from "../links";
 import { Link } from "react-router-dom";
 import ROUTES from "../../../../../constants/routes";
 import { Button, Option } from "../../../../../generalComponents";
+import { Logout } from "../logout";
 
 const themeOptions = [
   {
@@ -50,15 +51,7 @@ export const ThemeSettings = () => {
       <div className="flex flex-1 h-[calc(100vh-81px)] ">
         <div className=" pl-8 py-5 pr-4 border-r hidden border-neutral-200 dark:border-neutral-800 lg:flex flex-col gap-2 w-[260px] h-full">
           <Links />
-          <Link
-            to={ROUTES.LOGIN}
-            className="flex items-center gap-2 py-2.5 text-preset-4 text-secondary-text px-4 hover:bg-blue-50 dark:hover:bg-neutral-800 rounded-lg "
-          >
-            <span>
-              <LogoutIcon />
-            </span>
-            <span>Logout</span>
-          </Link>
+          <Logout />
         </div>
 
         <div className="flex-1 ">
