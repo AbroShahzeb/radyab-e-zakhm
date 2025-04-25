@@ -155,13 +155,13 @@ export const Detection = () => {
               <div className="flex flex-col gap-4">
                 <h3
                   className={`inline-block px-3 py-1 self-start rounded-full text-sm font-medium ${
-                    badgeStyles[result.title].bg || "bg-gray-100"
-                  } ${badgeStyles[result.title].text || "text-gray-800"}`}
+                    badgeStyles[result?.title]?.bg || "bg-gray-100"
+                  } ${badgeStyles[result?.title]?.text || "text-gray-800"}`}
                 >
-                  {result.title}
+                  {result?.title}
                 </h3>
                 <p className="text-preset-4 text-secondary-text">
-                  {result.description}
+                  {result?.description}
                 </p>
               </div>
             </div>
