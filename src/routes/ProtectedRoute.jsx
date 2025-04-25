@@ -40,11 +40,9 @@ export const ProtectedRoute = ({ children }) => {
     );
   } else {
     if (!isAuthenticated) {
-      // Redirect to the login page if not authenticated
       return <Navigate to={ROUTES.LOGIN} replace />;
     }
 
-    // Render the children if authenticated
     return <>{children}</>;
   }
 };
