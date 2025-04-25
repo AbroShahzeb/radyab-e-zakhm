@@ -81,3 +81,15 @@ export const logoutUser = async () => {
     throw error.response ? error.response.data : error;
   }
 };
+
+export const changePassword = async (body) => {
+  try {
+    const response = await axios.post(`${baseUrl}/auth/change-password`, body, {
+      withCredentials: true,
+    });
+    return response.data;
+  } catch (error) {
+    console.error("Error during password change:", error);
+    throw error.response ? error.response.data : error;
+  }
+};

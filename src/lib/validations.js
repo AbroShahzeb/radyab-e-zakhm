@@ -35,6 +35,7 @@ export const changePasswordFormSchema = z
       .string()
       .min(8, "Password must be at least 8 characters"),
   })
-  .refine((data) => data.newPassword === data.passwordConfirmation, {
+  .refine((data) => data.newPassword === data.confirmPassword, {
     message: "Passwords don't match",
+    path: ["confirmPassword"],
   });

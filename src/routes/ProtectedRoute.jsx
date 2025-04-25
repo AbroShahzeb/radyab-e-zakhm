@@ -3,7 +3,6 @@ import { Navigate } from "react-router-dom";
 import ROUTES from "../constants/routes";
 import { useMutation } from "@tanstack/react-query";
 import { getMe } from "../api/auth";
-import { showErrorToast } from "../lib/toastUtils";
 
 export const ProtectedRoute = ({ children }) => {
   const [isLoading, setIsLoading] = useState(true);

@@ -8,6 +8,12 @@ import { Link } from "react-router-dom";
 import ROUTES from "../../../../../constants/routes";
 import { EyeClose, EyeOpen, LogoutIcon } from "../../../../../assets/svgAssets";
 import { Button, Input } from "../../../../../generalComponents";
+import {
+  showErrorToast,
+  showSuccessToast,
+} from "../../../../../lib/toastUtils";
+import { useMutation } from "@tanstack/react-query";
+import { changePassword } from "../../../../../api/auth";
 
 export const AccountSettings = () => {
   useEffect(() => {
@@ -17,6 +23,7 @@ export const AccountSettings = () => {
     register,
     handleSubmit,
     formState: { errors },
+    reset,
   } = useForm({
     defaultValues: {
       oldPassword: "",
@@ -31,8 +38,31 @@ export const AccountSettings = () => {
   const [isConfirmPasswordVisible, setIsConfirmPasswordVisible] =
     useState(false);
 
+  const { mutate: changePasswordMutation, isPending } = useMutation({
+    mutationFn: changePassword,
+    onSuccess: (data) => {
+      if (data.status !== "success") {
+        showErrorToast(data.message);
+        return;
+      }
+
+      reset();
+
+      showSuccessToast("Password changed successfully.");
+    },
+    onError: (error) => {
+      console.error("Registration failed:", error);
+      showErrorToast(error.message);
+    },
+  });
+
   const onSubmit = (data) => {
     console.log(data);
+    const formattedBody = {
+      password: data.oldPassword,
+      newPassword: data.newPassword,
+    };
+    changePasswordMutation(formattedBody);
   };
   return (
     <div className="w-full flex-1 max-h-dvh h-full bg-surface-2 ">
@@ -124,7 +154,11 @@ export const AccountSettings = () => {
               />
 
               <div className="flex justify-end w-full">
-                <Button label="Save Password" type="submit" />
+                <Button
+                  label={isPending ? "Saving..." : "Save Password"}
+                  type="submit"
+                  disabled={isPending}
+                />
               </div>
             </form>
           </div>
